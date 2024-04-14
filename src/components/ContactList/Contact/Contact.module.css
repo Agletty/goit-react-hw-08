@@ -1,0 +1,38 @@
+.mainWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 15px;
+  transition: border-color 0.3s;
+  flex-basis: 300px;
+  transition: transform 0.2s ease-in-out 0.1s;
+  border-color: black;
+}
+.mainWrapper:hover {
+  border-color: #646cff;
+  transform: scale(1.1);
+}
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+.textInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  padding: 5px 10px;
+}
+.btnWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}

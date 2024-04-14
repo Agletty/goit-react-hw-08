@@ -1,20 +1,34 @@
-import { useSelector } from "react-redux";
-import Contact from "../Contact/Contact";
+import Contact from "./Contact/Contact";
 import css from "./ContactList.module.css";
-import { selectFilteredContacts } from "../../redux/selectors";
+import { useSelector } from "react-redux";
+import { selectVisibleContacts } from "../../redux/contacts/selectors";
+import Modal from "../Modal/Modal";
+import { useState } from "react";
 
 const ContactList = () => {
-  const filterContacts = useSelector(selectFilteredContacts);
+  const visibleContacts = useSelector(selectVisibleContacts);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [contact, setContact] = useState({});
 
+  const openModal = (contactData) => {
+    setContact(contactData);
+    setIsOpenModal(true);
+  };
   return (
-    <div>
-      <ul className={css.contactBox}>
-        {filterContacts.map((contact) => (
-          <Contact key={contact.id} contact={contact} />
-        ))}
+    <>
+      <ul className={css.wrapper}>
+        {visibleContacts &&
+          visibleContacts.map((contact) => (
+            <Contact openModal={openModal} key={contact.id} contact={contact} />
+          ))}
+
+        {visibleContacts && visibleContacts.length === 0 && (
+          <p>List is empty</p>
+        )}
       </ul>
-      {filterContacts.length === 0 ? <p>No contacts found </p> : ""}
-    </div>
+
+      {isOpenModal && <Modal onClick={setIsOpenModal} contact={contact} />}
+    </>
   );
 };
 

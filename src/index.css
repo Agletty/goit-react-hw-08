@@ -23,11 +23,9 @@ a:hover {
 }
 
 body {
-  margin: 0 auto;
-
+  margin: 0;
   display: flex;
-  text-align: center;
-  /* place-items: center; */
+
   min-width: 320px;
   min-height: 100vh;
 }
@@ -39,16 +37,14 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 2px solid rgb(107, 107, 110);
+  border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #8c8585;
+  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-  margin-top: 15px;
-  margin-bottom: 10px;
 }
 button:hover {
   border-color: #646cff;

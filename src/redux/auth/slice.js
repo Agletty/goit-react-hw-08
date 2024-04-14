@@ -1,46 +1,83 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { register, logIn, logOut, refreshUser } from "./operations";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import {
+  apiRegisterUser,
+  apiLoginUser,
+  apiRefreshUser,
+  apiLogoutUser,
+} from "./operations";
+import { toast } from "react-hot-toast";
+
+const INITIAL_STATE = {
+  user: null,
+  token: null,
+  isSignedIn: false,
+  isRefreshing: false,
+  isLoading: false,
+  isError: false,
+};
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    user: {
-      name: null,
-      email: null,
-    },
-    token: null,
-    isLoggedIn: false,
-    isRefreshing: false,
-  },
-  extraReducers: (builder) => {
+  initialState: INITIAL_STATE,
+  extraReducers: (builder) =>
     builder
-      .addCase(register.fulfilled, (state, action) => {
+      .addCase(apiRegisterUser.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
-        state.isLoggedIn = true;
+        state.isSignedIn = true;
+        toast.success("You have registered✅");
       })
-      .addCase(logIn.fulfilled, (state, action) => {
+
+      .addCase(apiLoginUser.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
-        state.isLoggedIn = true;
+        state.isSignedIn = true;
+        toast.success("You are logged in✅");
       })
-      .addCase(logOut.fulfilled, (state) => {
-        state.user = { name: null, email: null };
-        state.token = null;
-        state.isLoggedIn = false;
-      })
-      .addCase(refreshUser.pending, (state) => {
+
+      .addCase(apiRefreshUser.pending, (state) => {
         state.isRefreshing = true;
+        state.isError = false;
       })
-      .addCase(refreshUser.fulfilled, (state, action) => {
+      .addCase(apiRefreshUser.fulfilled, (state, action) => {
+        state.isRefreshing = false;
         state.user = action.payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
+        state.isSignedIn = true;
       })
-      .addCase(refreshUser.rejected, (state) => {
+      .addCase(apiRefreshUser.rejected, (state) => {
         state.isRefreshing = false;
-      });
-  },
+        state.isError = true;
+      })
+
+      .addCase(apiLogoutUser.fulfilled, () => {
+        return INITIAL_STATE;
+      })
+
+      .addMatcher(
+        isAnyOf(
+          apiRegisterUser.pending,
+          apiLoginUser.pending,
+          apiLogoutUser.pending
+        ),
+        (state) => {
+          state.isLoading = true;
+          state.isError = false;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          apiRegisterUser.rejected,
+          apiLoginUser.rejected,
+          apiLogoutUser.rejected
+        ),
+        (state) => {
+          state.isLoading = false;
+          state.isError = true;
+          toast.error("Oops! Something went wrong ❌");
+        }
+      ),
 });
 
 export const authReducer = authSlice.reducer;

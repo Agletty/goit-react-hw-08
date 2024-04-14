@@ -1,19 +1,12 @@
-.searchName {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  width: 370px;
-  height: 150px;
-  margin-left: 30px;
-  padding: 20px 15px;
-  gap: 10px;
-  border-radius: 5px;
-  border: 1px solid navy;
+.searchWrapper {
+  padding: 30px;
+}
+.searchLabel {
+  margin-right: 20px;
 }
 .searchInput {
-  border: 1px solid navy;
+  padding: 5px 10px;
   border-radius: 5px;
-  margin-left: 10px;
-  padding: 10px 15px;
+  width: 200px;
+  height: 40px;
 }

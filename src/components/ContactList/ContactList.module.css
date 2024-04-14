@@ -1,5 +1,12 @@
-.contactBox {
+.wrapper {
+  padding: 30px;
   display: flex;
+
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 40px;
+  /* width: 100%; */
+  width: 850px;
+  margin-bottom: 40px;
+  justify-content: center;
 }

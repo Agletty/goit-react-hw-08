@@ -1,24 +1,33 @@
-.contactForm {
-  display: block;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  padding: 15px;
-  width: 380px;
-  height: 300px;
-  border-radius: 10px;
-  border: 2px solid navy;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
-
-.contactField {
-  display: block;
-  margin: 0px auto;
-  width: 200px;
-  height: 20px;
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 80%;
+  margin: 0 auto;
+  align-items: start;
+  position: relative;
+}
+.contactInput {
+  /* width: 100%; */
+  width: 250px;
+  height: 50px;
+  padding: 5px 10px;
   border-radius: 5px;
-  padding: 15px 10px;
-
-  margin-bottom: 5px;
+  border-color: black;
 }
-.contactText {
-  font-weight: 500;
+.contactError {
+  color: red;
+  position: absolute;
+  bottom: 0;
+  transform: translateY(100%);
+}
+.submitBtn {
+  width: 300px;
+  margin: 0 auto;
+  border-color: black;
 }

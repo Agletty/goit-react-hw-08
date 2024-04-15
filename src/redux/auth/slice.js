@@ -65,11 +65,6 @@ const authSlice = createSlice({
           apiLoginUser.rejected,
           apiLogoutUser.rejected
         )
-        // (state) => {
-        //   state.isLoading = false;
-        //   state.isError = true;
-        //   toast.error("Oops! Something went wrong ❌");
-        // }
       ),
 });
 

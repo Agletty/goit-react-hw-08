@@ -4,7 +4,6 @@ import {
   requestAddContact,
   requestDeleteContact,
   requestUpdateContact,
-  // requestLogOut,
 } from "../../servises/contactsApi";
 
 export const apiGetUserContacts = createAsyncThunk(
@@ -54,14 +53,3 @@ export const apiUpdateUserContact = createAsyncThunk(
     }
   }
 );
-// export const apiLogoutUser = createAsyncThunk(
-//   "auth/logout",
-//   async (_, thunkAPI) => {
-//     try {
-//       await requestLogOut();
-//       return null; // Return null or any other value to indicate successful logout
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );

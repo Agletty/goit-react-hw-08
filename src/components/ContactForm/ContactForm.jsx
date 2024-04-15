@@ -24,7 +24,6 @@ const initialValues = {
 const contacts = [
   { name: "John Doe", number: "123-45-67" },
   { name: "Jane Smith", number: "234-56-78" },
-  { name: "Alice Johnson", number: "345-67-89" },
 ];
 
 const ContactForm = () => {

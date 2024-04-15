@@ -6,6 +6,7 @@ import {
   apiUpdateUserContact,
 } from "./operations";
 import { toast } from "react-hot-toast";
+import { apiLogoutUser } from "../auth/operations";
 
 const INITIAL_STATE = {
   contacts: null,
@@ -40,6 +41,9 @@ const phonebookSlice = createSlice({
           contact.id === action.payload.id ? action.payload : contact
         );
         toast.success("Updated a contact✅");
+      })
+      .addCase(apiLogoutUser.fulfilled, (state) => {
+        state.contacts = null;
       })
 
       .addMatcher(

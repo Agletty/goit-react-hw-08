@@ -13,6 +13,7 @@ export const apiRegisterUser = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await requestSignUp(credentials);
+
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
